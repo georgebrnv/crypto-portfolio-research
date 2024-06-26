@@ -19,31 +19,16 @@ const base = new Airtable({
 }).base(process.env.AIRTABLE_BASE_ID);
 
 // Import routes
+const authRoutes = require('./routes/auth');
+const profileRoutes = require('./routes/profile');
+const portfolioRoutes = require('./routes/portfolio');
+const indexRoutes = require('./routes/index');
 
-
-app.get('/', (req, res) => {
-    res.render('index');
-});
-
-app.get('/signup', (req, res) => {
-    res.render('signup');
-});
-
-app.get('/login', (req, res) => {
-    res.render('login');
-});
-
-app.get('/logout', (req, res) => {
-    res.render('login');
-});
-
-app.get('/profile', (req, res) => {
-    res.render('profile');
-});
-
-app.get('/portfolio', (req, res) => {
-    res.render('portfolio');
-});
+// Use routes
+app.use('/', authRoutes);
+app.use('/', profileRoutes);
+app.use('/', portfolioRoutes);
+app.use('/', indexRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
