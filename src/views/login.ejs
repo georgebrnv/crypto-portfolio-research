@@ -5,8 +5,21 @@
         <div class="container">
             <main class="form-signin mt-5">
 
-                <form id="loginForm" method="POST" action="">
+                <form id="loginForm" method="POST" action="/login">
                     <h1 class="h3 mb-3 fw-normal text-light">Log In</h1>
+
+                    <% if (loginMessage && loginMessage.length > 0) { %>
+                        <div class="alert alert-warning">
+                            <%= loginMessage %>
+                        </div>
+                    <% } %>
+                
+                    <% if (logoutMessage && logoutMessage.length > 0) { %>
+                        <div class="alert alert-success">
+                            <%= logoutMessage %>
+                        </div>
+                    <% } %>
+
                     <div class="form-floating">
                         <input type="text" class="form-control form-control-auth auth-form" id="floatingInput"
                                placeholder="name@example.com" name="email_username">

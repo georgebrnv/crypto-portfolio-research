@@ -9,6 +9,12 @@
 
                         <h4 class="profile-header-text mb-3 ">Profile Info</h4>
 
+                        <% if (message.length > 0) { %>
+                            <div class="alert alert-info">
+                                <%= message %>
+                            </div>
+                        <% } %>
+
                         <div class="mb-3">
                             <label class="profile-text" for="solana_wallet">Solana Wallet</label>
                             <div class="row input-group justify-content-center">
