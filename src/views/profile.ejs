@@ -1,0 +1,59 @@
+<%- include('header') %>
+
+<div class="top-container-image mb-5 pt-5">
+    <div class="container profile-form-container col-md-8 pt-5">
+        <div class="pt-5">
+            <div class="card profile-card px-3 py-2">
+                <div class="card-body">
+                    <div class="row align-items-center">
+
+                        <h4 class="profile-header-text mb-3 ">Profile Info</h4>
+
+                        <div class="mb-3">
+                            <label class="profile-text" for="solana_wallet">Solana Wallet</label>
+                            <div class="row input-group justify-content-center">
+                                <p class="col-auto me-2 text-warning">You need to connect your wallet first.</p>
+                                <p class="h6 text-info" id="solana_wallet">
+                                </p>
+                            </div>
+                        </div>
+
+                        <form method="POST" action="" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="profile-text" for="firstName">First name</label>
+                                    <input name="first_name" type="text" class="form-control" id="firstName"
+                                           placeholder="John" value="">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="profile-text" for="lastName">Last name</label>
+                                    <input name="last_name" type="text" class="form-control" id="lastName"
+                                           placeholder="Johnson" value="">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="profile-text" for="username">Username</label>
+                                <div class="input-group">
+                                    <input name="username" type="text" class="form-control" id="username"
+                                           placeholder="your_nickname" value="">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="profile-text" for="email">Email</label>
+                                <input name="email" type="email" class="form-control" id="email"
+                                       placeholder="you@example.com" value="">
+                            </div>
+
+                            <button class="btn btn-info btn-md btn-block" type="submit">Save profile info</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('footer') %>

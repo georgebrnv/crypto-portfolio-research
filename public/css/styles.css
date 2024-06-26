@@ -1,0 +1,545 @@
+.navbar-custom {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.navbar-custom .navbar-brand {
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  font-weight: 700;
+}
+.navbar-custom .navbar-nav .nav-item .nav-link {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+
+header.masthead {
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(7rem + 72px);
+  padding-bottom: 7rem;
+  background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: scroll;
+  background-size: cover;
+}
+header.masthead .masthead-content {
+  z-index: 1;
+  position: relative;
+}
+header.masthead .masthead-content .masthead-heading {
+  font-size: 4rem;
+}
+header.masthead .masthead-content .masthead-subheading {
+  font-size: 2rem;
+}
+header.masthead .bg-circle {
+  z-index: 0;
+  position: absolute;
+  border-radius: 100%;
+  background: linear-gradient(0deg, #ee0979 0%, #ff6a00 100%);
+}
+header.masthead .bg-circle-1 {
+  height: 90rem;
+  width: 90rem;
+  bottom: -55rem;
+  left: -55rem;
+}
+header.masthead .bg-circle-2 {
+  height: 50rem;
+  width: 50rem;
+  top: -25rem;
+  right: -25rem;
+}
+header.masthead .bg-circle-3 {
+  height: 20rem;
+  width: 20rem;
+  bottom: -10rem;
+  right: 5%;
+}
+header.masthead .bg-circle-4 {
+  height: 30rem;
+  width: 30rem;
+  top: -5rem;
+  right: 35%;
+}
+
+@media (min-width: 992px) {
+  header.masthead {
+    padding-top: calc(10rem + 55px);
+    padding-bottom: 10rem;
+  }
+  header.masthead .masthead-content .masthead-heading {
+    font-size: 6rem;
+  }
+  header.masthead .masthead-content .masthead-subheading {
+    font-size: 4rem;
+  }
+}
+
+.top-container-image {
+    height: 80vh;
+    background-image: url("/images/welcome-pic.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.navbar-brand {
+  font-size: 1.2rem !important;
+}
+
+.profile-form-container {
+        width: 40rem !important;
+}
+
+.rem-4 {
+    font-size: 4rem !important;
+}
+
+@media (max-width: 550px) {
+    .rem-4 {
+        font-size: 3rem !important;
+    }
+}
+
+}
+.rem-2 {
+    font-size: 2rem !important;
+}
+
+.welcome-btn {
+    text-transform: uppercase;
+    padding: 1.5rem 3rem !important;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    --bs-btn-bg: #ff00c1 !important;
+    --bs-btn-border-color: #fff !important;
+}
+
+.sign-in-container {
+    width: 20rem !important;
+}
+
+.btn-reg {
+    --bs-btn-bg: #ff4db3 !important;
+    --bs-btn-border-color: #ff4db3 !important;
+}
+
+.table, .datatable-table {
+  --bs-table-color: #212121;
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--bs-border-color);
+  --bs-table-accent-bg: transparent;
+  --bs-table-striped-color: #212121;
+  --bs-table-striped-bg: rgba(0, 0, 0, 0.025);
+  --bs-table-active-color: #212121;
+  --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+  --bs-table-hover-color: #212121;
+  --bs-table-hover-bg: rgba(0, 0, 0, 0.04);
+  width: 100%;
+  margin-bottom: 1rem;
+  color: var(--bs-table-color);
+  vertical-align: top;
+  border-color: var(--bs-table-border-color);
+}
+.table > :not(caption) > * > *, .datatable-table > :not(caption) > * > * {
+  padding: 1rem 1rem;
+  background-color: var(--bs-table-bg);
+  border-bottom-width: 1px;
+  box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+.table > tbody, .datatable-table > tbody {
+  vertical-align: inherit;
+}
+.table > thead, .datatable-table > thead {
+  vertical-align: bottom;
+}
+
+.table-group-divider {
+  border-top: 2px solid currentcolor;
+}
+
+.caption-top {
+  caption-side: top;
+}
+
+.table-sm > :not(caption) > * > * {
+  padding: 0.5rem 0.5rem;
+}
+
+.table-bordered > :not(caption) > *, .datatable-table > :not(caption) > * {
+  border-width: 1px 0;
+}
+.table-bordered > :not(caption) > * > *, .datatable-table > :not(caption) > * > * {
+  border-width: 0 1px;
+}
+
+.table-borderless > :not(caption) > * > * {
+  border-bottom-width: 0;
+}
+.table-borderless > :not(:first-child) {
+  border-top-width: 0;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > *, .datatable-table > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-accent-bg: var(--bs-table-striped-bg);
+  color: var(--bs-table-striped-color);
+}
+
+.table-striped-columns > :not(caption) > tr > :nth-child(even) {
+  --bs-table-accent-bg: var(--bs-table-striped-bg);
+  color: var(--bs-table-striped-color);
+}
+
+.table-active {
+  --bs-table-accent-bg: var(--bs-table-active-bg);
+  color: var(--bs-table-active-color);
+}
+
+.table-hover > tbody > tr:hover > *, .datatable-table > tbody > tr:hover > * {
+  --bs-table-accent-bg: var(--bs-table-hover-bg);
+  color: var(--bs-table-hover-color);
+}
+
+.table-primary {
+  --bs-table-color: #000;
+  --bs-table-bg: #e0ccfb;
+  --bs-table-border-color: #cab8e2;
+  --bs-table-striped-bg: #dac7f5;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #cab8e2;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #d7c4f1;
+  --bs-table-hover-color: #000;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.table-secondary {
+  --bs-table-color: #000;
+  --bs-table-bg: #ebd4ef;
+  --bs-table-border-color: #d4bfd7;
+  --bs-table-striped-bg: #e5cfe9;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #d4bfd7;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #e2cce5;
+  --bs-table-hover-color: #000;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.table-success {
+  --bs-table-color: #000;
+  --bs-table-bg: #d5e5d6;
+  --bs-table-border-color: #c0cec1;
+  --bs-table-striped-bg: #d0dfd1;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #c0cec1;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #ccdccd;
+  --bs-table-hover-color: #000;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.table-info {
+  --bs-table-color: #000;
+  --bs-table-bg: #d4edeb;
+  --bs-table-border-color: #bfd5d4;
+  --bs-table-striped-bg: #cfe7e5;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #bfd5d4;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #cce4e2;
+  --bs-table-hover-color: #000;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.table-warning {
+  --bs-table-color: #000;
+  --bs-table-bg: #fff0cc;
+  --bs-table-border-color: #e6d8b8;
+  --bs-table-striped-bg: #f9eac7;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #e6d8b8;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #f5e6c4;
+  --bs-table-hover-color: #000;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.table-danger {
+  --bs-table-color: #000;
+  --bs-table-bg: #f6d5d5;
+  --bs-table-border-color: #ddc0c0;
+  --bs-table-striped-bg: #f0d0d0;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #ddc0c0;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #eccccc;
+  --bs-table-hover-color: #000;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.table-light {
+  --bs-table-color: #000;
+  --bs-table-bg: #f5f5f5;
+  --bs-table-border-color: #dddddd;
+  --bs-table-striped-bg: #efefef;
+  --bs-table-striped-color: #000;
+  --bs-table-active-bg: #dddddd;
+  --bs-table-active-color: #000;
+  --bs-table-hover-bg: #ebebeb;
+  --bs-table-hover-color: #000;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.table-dark {
+  --bs-table-color: #fff;
+  --bs-table-bg: #212121;
+  --bs-table-border-color: #373737;
+  --bs-table-striped-bg: #272727;
+  --bs-table-striped-color: #fff;
+  --bs-table-active-bg: #373737;
+  --bs-table-active-color: #fff;
+  --bs-table-hover-bg: #2a2a2a;
+  --bs-table-hover-color: #fff;
+  color: var(--bs-table-color);
+  border-color: var(--bs-table-border-color);
+}
+
+.table-responsive, .datatable-wrapper .datatable-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.datatable-wrapper.no-header .datatable-container {
+	border-top: 1px solid #d9d9d9;
+}
+
+.datatable-wrapper.no-footer .datatable-container {
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.datatable-top,
+.datatable-bottom {
+	padding: 8px 10px;
+}
+
+.datatable-top > nav:first-child,
+.datatable-top > div:first-child,
+.datatable-bottom > nav:first-child,
+.datatable-bottom > div:first-child {
+	float: left;
+}
+
+.datatable-top > nav:last-child,
+.datatable-top > div:last-child,
+.datatable-bottom > nav:last-child,
+.datatable-bottom > div:last-child {
+	float: right;
+}
+
+.datatable-selector {
+	padding: 6px;
+}
+
+.datatable-input {
+	padding: 6px 12px;
+}
+
+.datatable-info {
+	margin: 7px 0;
+}
+
+/* PAGER */
+.datatable-pagination ul {
+	margin: 0;
+	padding-left: 0;
+}
+
+.datatable-pagination li {
+	list-style: none;
+	float: left;
+}
+
+.datatable-pagination li.datatable-hidden {
+    visibility: hidden;
+}
+
+.datatable-pagination a {
+	border: 1px solid transparent;
+	float: left;
+	margin-left: 2px;
+	padding: 6px 12px;
+	position: relative;
+	text-decoration: none;
+	color: #333;
+    cursor: pointer;
+}
+
+.datatable-pagination a:hover {
+	background-color: #d9d9d9;
+}
+
+.datatable-pagination .datatable-active a,
+.datatable-pagination .datatable-active a:focus,
+.datatable-pagination .datatable-active a:hover {
+	background-color: #d9d9d9;
+	cursor: default;
+}
+
+.datatable-pagination .datatable-ellipsis a,
+.datatable-pagination .datatable-disabled a,
+.datatable-pagination .datatable-disabled a:focus,
+.datatable-pagination .datatable-disabled a:hover {
+    pointer-events: none;
+    cursor: default;
+}
+
+.datatable-pagination .datatable-disabled a,
+.datatable-pagination .datatable-disabled a:focus,
+.datatable-pagination .datatable-disabled a:hover {
+	cursor: not-allowed;
+	opacity: 0.4;
+}
+
+.datatable-pagination .datatable-pagination a {
+	font-weight: bold;
+}
+
+.datatable-table > tbody > tr > td,
+.datatable-table > tbody > tr > th,
+.datatable-table > tfoot > tr > td,
+.datatable-table > tfoot > tr > th,
+.datatable-table > thead > tr > td,
+.datatable-table > thead > tr > th {
+	vertical-align: top;
+	padding: 8px 10px;
+}
+
+.datatable-table > thead > tr > th {
+	vertical-align: bottom;
+	text-align: left;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.datatable-table > tfoot > tr > th {
+	vertical-align: bottom;
+	text-align: left;
+	border-top: 1px solid #d9d9d9;
+}
+
+.datatable-table th {
+	vertical-align: bottom;
+	text-align: left;
+}
+
+.datatable-table th a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.datatable-sorter, .datatable-filter {
+	display: inline-block;
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+.datatable-sorter::before,
+.datatable-sorter::after {
+	content: "";
+	height: 0;
+	width: 0;
+	position: absolute;
+	right: 4px;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	opacity: 0.2;
+}
+
+
+.datatable-sorter::before {
+	border-top: 4px solid #000;
+	bottom: 0px;
+}
+
+.datatable-sorter::after {
+	border-bottom: 4px solid #000;
+	border-top: 4px solid transparent;
+	top: 0px;
+}
+
+.datatable-ascending .datatable-sorter::after,
+.datatable-descending .datatable-sorter::before,
+.datatable-ascending .datatable-filter::after,
+.datatable-descending .datatable-filter::before {
+	opacity: 0.6;
+}
+
+.datatable-filter::before {
+    content: "";
+    position: absolute;
+    right: 4px;
+    opacity: 0.2;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+	border-radius: 50%;
+    border-top: 10px solid #000;
+    top: 25%;
+}
+
+.datatable-filter-active .datatable-filter::before {
+    opacity: 0.6;
+}
+
+.datatable-empty {
+	text-align: center;
+}
+
+.datatable-top::after, .datatable-bottom::after {
+	clear: both;
+	content: " ";
+	display: table;
+}
+
+table.datatable-table:focus tr.datatable-cursor > td:first-child {
+	border-left: 3px blue solid;
+}
+
+table.datatable-table:focus {
+	outline: solid 1px black;
+    outline-offset: -1px;
+}
+
+.card-raised {
+    border: none !important;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.border-start {
+    border-left: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+}
+
+.portfolio-top-bg {
+    background: linear-gradient(to top, #5f72bd 0%, #9b23ea 100%);
+}
+

@@ -1,0 +1,32 @@
+<%- include('header') %>
+
+<div class="top-container-image">
+    <div class="container sign-in-container mt-5">
+        <div class="container">
+            <main class="form-signin mt-5">
+
+                <form id="signupForm" method="POST" action="">
+                <h1 class="h3 mb-3 fw-normal text-light">Sign Up</h1>
+                <div class="form-floating">
+                    <input type="email" class="form-control form-control-auth auth-form" id="floatingInput"
+                           placeholder="name@example.com" name="email">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating mt-3">
+                    <input type="password" class="form-control form-control-auth auth-form" id="floatingPassword" placeholder="Password" name="password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="form-floating pb-4 mt-3">
+                    <input type="password" class="form-control form-control-auth auth-form" id="floatingPassword1" placeholder="Password" name="confirm_password">
+                    <label for="floatingPassword">Confirm Password</label>
+                </div>
+                <button class="btn btn-info w-100 py-2" type="submit">Create Account</button>
+                <p class="auth-form-text mb-1 pt-3">Already have an account?</p>
+                <a href="/login" class="btn btn-info btn-reg w-100 py-2" type="submit">Login</a>
+            </form>
+            </main>
+        </div>
+    </div>
+</div>
+
+<%- include('footer') %>
