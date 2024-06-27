@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', async function() {
             navbarConnectButton.style.display = 'none';
             disconnectButton.style.display = 'inline-block';
 
+            // Send wallet data to backend
+            await sendWalletData(wallet.publicKey.toString());
+
         } catch (error) {
             console.error('An error occurred while connecting your wallet:', error);
         }
@@ -39,11 +42,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     });
 
-    logoutButton.addEventListener('click', () => {
+    logoutButton.addEventListener('click', async () => {
         try {
             // Disconnect Phantom wallet when logout button is clicked
             window.solana.disconnect();
             console.log('Wallet has been disconnected.');
+
+            // Send initial wallet data to backend on page load
+            await sendWalletData(wallet);
 
             // Remove wallet connection information from local storage
             localStorage.removeItem('walletConnected');
@@ -61,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         } catch (error) {
             console.error('An error occurred while connecting your wallet:', error);
         }
-    }
+    };
 
     // Check if wallet is connected on page load
     if (window.solana.isConnected) {
@@ -70,6 +76,26 @@ document.addEventListener('DOMContentLoaded', async function() {
     } else {
         navbarConnectButton.style.display = 'inline-block';
         disconnectButton.style.display = 'none';
+    };
+
+    async function sendWalletData(publicKey) {
+        try {
+            const response = await fetch('/wallet/connect', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ publicKey: publicKey })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to send wallet data to the server.');
+            }
+
+            console.log('Wallet data sent successfully to the server:');
+        } catch (error) {
+            console.error('Error sending wallet data to the server:', error);
+        }
     }
 
 });

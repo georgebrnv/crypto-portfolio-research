@@ -4,6 +4,7 @@ const session = require('express-session');
 const flash = require('express-flash');
 const redis = require('redis');
 const connectRedis = require('connect-redis');
+const bodyParser = require('body-parser');
 
 require('dotenv').config();
 
@@ -12,6 +13,9 @@ const PORT = process.env.PORT || 3000;
 
 // Serve static files
 app.use(express.static(path.join(__dirname, '..', 'public')));
+
+// Json body parser
+app.use(bodyParser.json());
 
 // Parse data 
 app.use(express.urlencoded({ extended: true }));
@@ -58,12 +62,14 @@ const authRoutes = require('./routes/auth');
 const profileRoutes = require('./routes/profile');
 const portfolioRoutes = require('./routes/portfolio');
 const indexRoutes = require('./routes/index');
+const walletRoutes = require('./routes/wallet.js');
 
 // Use routes
 app.use('/', authRoutes);
 app.use('/', profileRoutes);
 app.use('/', portfolioRoutes);
 app.use('/', indexRoutes);
+app.use('/', walletRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

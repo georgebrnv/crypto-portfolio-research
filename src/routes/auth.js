@@ -1,16 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Airtable = require('airtable');
 const bcrypt = require('bcrypt');
 const { isAuthenticated } = require('../middleware/authentication');
+const base = require('../middleware/airtable');
 
 // Load .env variables
 require('dotenv').config();
-
-// Airtable connection
-const base = new Airtable({
-    apiKey: process.env.AIRTABLE_ACCESS_TOKEN
-}).base(process.env.AIRTABLE_BASE_ID);
 
 // Password hashing func
 async function hashPassword(password) {
@@ -136,7 +131,6 @@ router.post('/logout', isAuthenticated, async (req, res) => {
             return res.redirect('login');
         });
         
-    
 });
 
 
