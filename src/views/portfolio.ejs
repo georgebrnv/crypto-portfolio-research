@@ -30,130 +30,135 @@
         </div>
     <% } %>
 
-    <div class="row gx-5">
+    <% if (walletAdded) { %>
 
-        <div class="col-lg-4 col-md-6 mb-5">
-            <div class="card card-raised border-start border-4 border-primary">
-                <div class="card-body px-4">
-                    <div class="overline text-muted mb-1">Gross Revenue</div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="display-6 me-3">$32,502.00</div>
-                        <div class="d-flex align-items-center text-success">
-                            <div class="display-6 text-success fw-normal">24%</div>
+        <div class="row gx-5">
+
+            <div class="col-lg-4 col-md-6 mb-5">
+                <div class="card card-raised border-start border-4 border-primary">
+                    <div class="card-body px-4">
+                        <div class="overline text-muted mb-1">Gross Revenue</div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="display-6 me-3">$32,502.00</div>
+                            <div class="d-flex align-items-center text-success">
+                                <div class="display-6 text-success fw-normal">24%</div>
+                            </div>
+                        </div>
+                        <div class="text-xs text-muted mb-1">Previous year: $46,018.00</div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-4 col-md-6 mb-5">
+                <div class="card card-raised border-start border-4 border-secondary">
+                    <div class="card-body px-4">
+                        <div class="overline text-muted mb-1">Refunds</div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="display-6 me-3">$0.00</div>
+                            <div class="d-flex align-items-center text-muted">
+                                <div class="display-6 text-muted fw-normal">0%</div>
+                            </div>
+                        </div>
+                        <div class="text-xs text-muted mb-1">Previous year: $0.00</div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-4 col-md-6 mb-5">
+                <div class="card card-raised border-start border-4 border-info">
+                    <div class="card-body px-4">
+                        <div class="overline text-muted mb-1">Coupons</div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="display-6 me-3">$10.00</div>
+                            <div class="d-flex align-items-center text-danger">
+                                <div class="display-6 text-danger fw-normal">10%</div>
+                            </div>
+                        </div>
+                        <div class="text-xs text-muted mb-1">Previous year: $50.00</div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <div class="card card-raised mb-5">
+            <div class="card-header bg-transparent px-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="me-4">
+                        <h2 class="display-6 mb-0">Orders</h2>
+                        <div class="card-text">Details and history</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <!-- Simple DataTables example-->
+                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                    <div class="datatable-top">
+                        <div class="datatable-dropdown">
+                            <label>
+                                <select class="datatable-selector">
+                                    <option value="5">5</option>
+                                    <option value="10" selected="">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="25">25</option>
+                                </select> entries per page
+                            </label>
+                        </div>
+                        <div class="datatable-search">
+                            <input class="datatable-input" placeholder="Search..." type="search" title="Search within table"
+                                   aria-controls="datatablesSimple">
                         </div>
                     </div>
-                    <div class="text-xs text-muted mb-1">Previous year: $46,018.00</div>
+                    <div class="datatable-container">
+                        <table id="datatablesSimple" class="datatable-table">
+                            <thead>
+                            <tr>
+                                <th data-sortable="true" style="width: 18.48574237954769%;"><a href="#"
+                                                                                               class="datatable-sorter">Start
+                                    Date</a></th>
+                                <th data-sortable="true" style="width: 16.027531956735498%;"><a href="#"
+                                                                                                class="datatable-sorter">Order
+                                    No.</a></th>
+                                <th data-sortable="true" style="width: 28.613569321533923%;"><a href="#"
+                                                                                                class="datatable-sorter">Name</a>
+                                </th>
+                                <th data-sortable="true" style="width: 14.454277286135694%;"><a href="#"
+                                                                                                class="datatable-sorter">Amount</a>
+                                </th>
+                                <th data-sortable="true" style="width: 22.418879056047196%;"><a href="#"
+                                                                                                class="datatable-sorter">Status</a>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr data-index="0">
+                                <td>2005/02/11</td>
+                                <td>9958</td>
+                                <td>Unity Pugh</td>
+                                <td>$12.00</td>
+                                <td><span class="badge bg-primary">Processing</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="datatable-bottom">
+                        <div class="datatable-info">Showing 1 to 10 of 100 entries</div>
+                        <nav class="datatable-pagination">
+                            <ul class="datatable-pagination-list">
+                                <li class="datatable-pagination-list-item datatable-hidden datatable-disabled"><a
+                                        data-page="1" class="datatable-pagination-list-item-link">‹</a></li>
+                                <li class="datatable-pagination-list-item datatable-active"><a data-page="1"
+                                                                                               class="datatable-pagination-list-item-link">1</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 mb-5">
-            <div class="card card-raised border-start border-4 border-secondary">
-                <div class="card-body px-4">
-                    <div class="overline text-muted mb-1">Refunds</div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="display-6 me-3">$0.00</div>
-                        <div class="d-flex align-items-center text-muted">
-                            <div class="display-6 text-muted fw-normal">0%</div>
-                        </div>
-                    </div>
-                    <div class="text-xs text-muted mb-1">Previous year: $0.00</div>
-                </div>
-            </div>
-        </div>
+    <% } %>
 
-        <div class="col-lg-4 col-md-6 mb-5">
-            <div class="card card-raised border-start border-4 border-info">
-                <div class="card-body px-4">
-                    <div class="overline text-muted mb-1">Coupons</div>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="display-6 me-3">$10.00</div>
-                        <div class="d-flex align-items-center text-danger">
-                            <div class="display-6 text-danger fw-normal">10%</div>
-                        </div>
-                    </div>
-                    <div class="text-xs text-muted mb-1">Previous year: $50.00</div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="card card-raised mb-5">
-        <div class="card-header bg-transparent px-4">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="me-4">
-                    <h2 class="display-6 mb-0">Orders</h2>
-                    <div class="card-text">Details and history</div>
-                </div>
-            </div>
-        </div>
-        <div class="card-body p-4">
-            <!-- Simple DataTables example-->
-            <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-                <div class="datatable-top">
-                    <div class="datatable-dropdown">
-                        <label>
-                            <select class="datatable-selector">
-                                <option value="5">5</option>
-                                <option value="10" selected="">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                            </select> entries per page
-                        </label>
-                    </div>
-                    <div class="datatable-search">
-                        <input class="datatable-input" placeholder="Search..." type="search" title="Search within table"
-                               aria-controls="datatablesSimple">
-                    </div>
-                </div>
-                <div class="datatable-container">
-                    <table id="datatablesSimple" class="datatable-table">
-                        <thead>
-                        <tr>
-                            <th data-sortable="true" style="width: 18.48574237954769%;"><a href="#"
-                                                                                           class="datatable-sorter">Start
-                                Date</a></th>
-                            <th data-sortable="true" style="width: 16.027531956735498%;"><a href="#"
-                                                                                            class="datatable-sorter">Order
-                                No.</a></th>
-                            <th data-sortable="true" style="width: 28.613569321533923%;"><a href="#"
-                                                                                            class="datatable-sorter">Name</a>
-                            </th>
-                            <th data-sortable="true" style="width: 14.454277286135694%;"><a href="#"
-                                                                                            class="datatable-sorter">Amount</a>
-                            </th>
-                            <th data-sortable="true" style="width: 22.418879056047196%;"><a href="#"
-                                                                                            class="datatable-sorter">Status</a>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr data-index="0">
-                            <td>2005/02/11</td>
-                            <td>9958</td>
-                            <td>Unity Pugh</td>
-                            <td>$12.00</td>
-                            <td><span class="badge bg-primary">Processing</span></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="datatable-bottom">
-                    <div class="datatable-info">Showing 1 to 10 of 100 entries</div>
-                    <nav class="datatable-pagination">
-                        <ul class="datatable-pagination-list">
-                            <li class="datatable-pagination-list-item datatable-hidden datatable-disabled"><a
-                                    data-page="1" class="datatable-pagination-list-item-link">‹</a></li>
-                            <li class="datatable-pagination-list-item datatable-active"><a data-page="1"
-                                                                                           class="datatable-pagination-list-item-link">1</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <%- include('footer') %>

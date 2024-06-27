@@ -96,6 +96,25 @@ document.addEventListener('DOMContentLoaded', async function() {
         } catch (error) {
             console.error('Error sending wallet data to the server:', error);
         }
+    };
+
+    async function checkSessionStatus() {
+        try {
+            const response = await fetch('/session/check');
+            const data = await response.json();
+
+            if (!data.sessionActive && window.solana.isConnected) {
+                console.log('Session expired. Disconnecting wallet.');
+                await window.solana.disconnect();
+                localStorage.removeItem('walletConnected');
+                navbarConnectButton.style.display = 'inline-block';
+                disconnectButton.style.display = 'none';
+            };
+        } catch (error) {
+            console.error('Error checking session status:', error);
+        }
     }
+
+    setInterval(checkSessionStatus, 300000);
 
 });

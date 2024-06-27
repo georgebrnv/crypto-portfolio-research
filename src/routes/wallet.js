@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const base = require('../middleware/airtable');
 
-// Load .env variables
-require('dotenv').config();
 
 router.post('/wallet/connect', async (req, res) => {
 
@@ -75,5 +73,14 @@ router.post('/wallet/connect', async (req, res) => {
 
 });
 
+
+// Check if session is expired
+router.get('/session/check', (req, res) => {
+    if (req.session.user) {
+        res.status(200).json({ sessionActive: true });
+    } else {
+        res.status(401).json({ sessionActive: false });
+    }
+});
 
 module.exports = router;
