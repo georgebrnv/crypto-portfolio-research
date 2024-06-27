@@ -18,6 +18,7 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body id="page-top">
+
 <!-- Navigation-->
 <header class="nav-bar">
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
@@ -29,11 +30,30 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <% if (isAuthenticated) { %>
+                        <li class="nav-item px-1">
+                            <button id="connectWalletBtnNavbar" class="nav-link wallet-button"
+                            style="display: none"
+                            hx-trigger="click"
+                            hx-swap="outerHTML"
+                            hx-target="#connectWalletBtn">
+                                Connect Wallet
+                        </button>
+                        </li>
+                        <li class="nav-item">
+                            <button id="disconnectWalletBtn" class="nav-link wallet-button"
+                            style="display: none"
+                            hx-trigger="click"
+                            hx-swap="outerHTML"
+                            hx-target="#disconnectWalletBtn"
+                            hx-indicator="dots">
+                                Disonnect Wallet
+                            </button>
+                        </li>
                         <li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
                         <li class="nav-item">
                             <form id="logoutForm" action="/logout" method="POST">
-                                <button type="submit" class="nav-link">Log Out</button>
+                                <button id="logoutBtn" type="submit" class="nav-link">Log Out</button>
                             </form>
                         </li>
                     <% } else { %>
