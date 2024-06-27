@@ -18,21 +18,15 @@
 </header>
 <div class="container-xl p-5">
 
-    <% if (signupMessage && signupMessage.length > 0) { %>
+    <% if (successMessage && successMessage.length > 0) { %>
         <div class="alert alert-success">
-            <%= signupMessage %>
+            <%= successMessage %>
         </div>
     <% } %>
 
-    <% if (loginMessage && loginMessage.length > 0) { %>
-        <div class="alert alert-success">
-            <%= loginMessage %>
-        </div>
-    <% } %>
-
-    <% if (logoutMessage && logoutMessage.length > 0) { %>
+    <% if (warningMessage && warningMessage.length > 0) { %>
         <div class="alert alert-warning">
-            <%= logoutMessage %>
+            <%= warningMessage %>
         </div>
     <% } %>
 

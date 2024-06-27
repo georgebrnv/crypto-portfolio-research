@@ -5,10 +5,9 @@ const { isAuthenticated } = require('../middleware/authentication');
 router.get('/portfolio', isAuthenticated, (req, res) => {
     
     res.render('portfolio', {
-        logoutMessage: req.flash('logoutMessage'),
-        loginMessage: req.flash('loginMessage'),
-        signupMessage: req.flash('signupMessage'),
-        isAuthenticated: isAuthenticated ? true : false,
+        successMessage: req.flash('successMessage'),
+        warningMessage: req.flash('warningMessage'),
+        isAuthenticated: !!req.session.user,
         title: 'Portfolio',
     });
 });

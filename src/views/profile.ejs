@@ -9,9 +9,15 @@
 
                         <h4 class="profile-header-text mb-3 ">Profile Info</h4>
 
-                        <% if (message.length > 0) { %>
-                            <div class="alert alert-info">
-                                <%= message %>
+                        <% if (warningMessage && warningMessage.length > 0) { %>
+                            <div class="alert alert-warning">
+                                <%= warningMessage %>
+                            </div>
+                        <% } %>
+
+                        <% if (successMessage && successMessage.length > 0) { %>
+                            <div class="alert alert-success">
+                                <%= successMessage %>
                             </div>
                         <% } %>
 

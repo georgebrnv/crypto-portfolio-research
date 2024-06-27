@@ -8,15 +8,15 @@
                 <form id="loginForm" method="POST" action="/login">
                     <h1 class="h3 mb-3 fw-normal text-light">Log In</h1>
 
-                    <% if (loginMessage && loginMessage.length > 0) { %>
+                    <% if (warningMessage && warningMessage.length > 0) { %>
                         <div class="alert alert-warning">
-                            <%= loginMessage %>
+                            <%= warningMessage %>
                         </div>
                     <% } %>
                 
-                    <% if (logoutMessage && logoutMessage.length > 0) { %>
+                    <% if (successMessage && successMessage.length > 0) { %>
                         <div class="alert alert-success">
-                            <%= logoutMessage %>
+                            <%= successMessage %>
                         </div>
                     <% } %>
 

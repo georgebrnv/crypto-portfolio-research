@@ -4,7 +4,8 @@ const { isAuthenticated } = require('../middleware/authentication');
 
 router.get('/profile', isAuthenticated, (req, res) => {
     res.render('profile', {
-        message: req.flash('signupMessage'),
+        successMessage: req.flash('successMessage'),
+        warningMessage: req.flash('warningMessage'),
         title: 'Profile',
         isAuthenticated: !!req.session.user,
     });

@@ -21,7 +21,7 @@ async function hashPassword(password) {
 router.get('/signup', (req, res) => {
 
     res.render('signup', {
-        signupMessage: req.flash('signupMessage'),
+        warningMessage: req.flash('warningMessage'),
         isAuthenticated: !!req.session.user,
         title: 'Sign Up',
     });
@@ -37,11 +37,11 @@ router.post('/signup', async (req, res) => {
     }).firstPage();
 
     if (existingUser.length > 0) {
-        req.flash('signupMessage', 'Sign Up Error: User with this email already exists.');
+        req.flash('warningMessage', 'Sign Up Error: User with this email already exists.');
         return res.redirect('signup');
     } 
     if (password !== password_confirm) {
-        req.flash('signupMessage', 'Sign Up Error: passwords do not match.');
+        req.flash('warningMessage', 'Sign Up Error: passwords do not match.');
         return res.redirect('signup');
     }
 
@@ -67,10 +67,8 @@ router.post('/signup', async (req, res) => {
             email: email,
         };
 
-        req.flash('signupMessage', 'You have successfully signed up!');
-        return res.redirect('portfolio', {
-            'signupMessage': req.flash('signupMessage'),
-        });
+        req.flash('successMessage', 'You have successfully signed up!');
+        return res.redirect('portfolio');
 
     } catch (error) {
         console.error('Error signing up:', error);
@@ -82,8 +80,8 @@ router.post('/signup', async (req, res) => {
 router.get('/login', (req, res) => {
     
     res.render('login', {
-        logoutMessage: req.flash('logoutMessage'),
-        loginMessage: req.flash('loginMessage'),
+        successMessage: req.flash('successMessage'),
+        warningMessage: req.flash('warningMessage'),
         isAuthenticated: !!req.session.user,
         title: 'Log In',
     });
@@ -100,7 +98,7 @@ router.post('/login', async (req, res) => {
         }).firstPage();
     
         if (existingUser.length === 0) {
-            req.flash('loginMessage', 'Login Error: User does NOT exist.');
+            req.flash('warningMessage', 'Login Error: User does NOT exist.');
             return res.redirect('login');
         }
     
@@ -108,7 +106,7 @@ router.post('/login', async (req, res) => {
         const passwordMatch = await bcrypt.compare(password, user.Password);
     
         if (!passwordMatch) {
-            req.flash('loginMessage', 'Login Error: Incorrect Password.');
+            req.flash('warningMessage', 'Login Error: Incorrect Password.');
             return res.redirect('login');
         }
 
@@ -116,12 +114,12 @@ router.post('/login', async (req, res) => {
             email: email_username,
         };
 
-        req.flash('loginMessage', 'Logged In sucessfully.')
+        req.flash('successMessage', 'Logged In successfully.')
         return res.redirect('portfolio');
 
     } catch (error) {
         console.error('Error logging in:', error);
-        req.flash('loginMessage', 'Error logging in user.');
+        req.flash('warningMessage', 'Error logging in user.');
         return res.redirect('login');
     };
 
@@ -132,7 +130,7 @@ router.post('/logout', isAuthenticated, async (req, res) => {
         req.session.destroy((err) => {
             if (err) {
                 console.error('Error loggin out:', err);
-                req.flash('logoutMessage', 'Error logging out.');
+                req.flash('warningMessage', 'Error logging out.');
                 return res.redirect('portfolio');
             }
             return res.redirect('login');

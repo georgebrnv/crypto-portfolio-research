@@ -8,9 +8,9 @@
                 <form id="signupForm" method="POST" action="/signup">
                 <h1 class="h3 mb-3 fw-normal text-light">Sign Up</h1>
 
-                <% if (signupMessage && signupMessage.length > 0) { %>
+                <% if (warningMessage && warningMessage.length > 0) { %>
                     <div class="alert alert-warning">
-                        <%= signupMessage %>
+                        <%= warningMessage %>
                     </div>
                 <% } %>
 
