@@ -23,6 +23,8 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
             publicKey = existingWallet[0].fields['Solana Wallet']
 
             const walletData = await fungiblesWalletBalance(publicKey);
+            console.log('Tokens data:', walletData.sortedTokensData);
+            console.log('Wallet Balance in USDC:', walletData.total_wallet_balance_usdc);
         
         };
 
