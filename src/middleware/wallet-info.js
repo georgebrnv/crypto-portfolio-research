@@ -13,7 +13,7 @@ async function fungiblesWalletBalance(wallet) {
         'params': {
             'ownerAddress': wallet,
             'page': 1,
-            'limit': 10,
+            'limit': 150,
             'tokenType': 'fungible',
             'displayOptions': {
                 'showUnverifiedCollections': false,
@@ -41,7 +41,40 @@ async function fungiblesWalletBalance(wallet) {
         }
 
         const data = await response.json();
-        console.log('Assets:', data['result']['items']);
+        const walletData = data['result'];
+        const fungibleTokens = walletData['items'];
+
+        // Current SOL price
+        const solana_price = parseFloat(walletData['nativeBalance']['price_per_sol']).toFixed(2);
+        // SOL balance in USDC 
+        const solana_balance_usdc = parseFloat(walletData['nativeBalance']['total_price']).toFixed(2);
+        // SOL balance
+        const solana_balance = parseFloat(solana_balance_usdc / solana_price).toFixed(2);
+
+        console.log('Solana price:', solana_price);
+        console.log('Solana balance in USDC:', solana_balance_usdc);
+        console.log('Solana holdings:', solana_balance);
+        
+        for (const token of fungibleTokens) {
+
+            const token_info = token.token_info;
+            let tokenSymbol;
+
+            try {
+
+                tokenSymbol = token_info['symbol'];
+                if (tokenSymbol && token_info['price_info']) { 
+                     
+                };
+
+            } catch (err) {
+                continue;
+            }
+
+            
+
+        };
+        
         return data;
 
     } catch (error) {
