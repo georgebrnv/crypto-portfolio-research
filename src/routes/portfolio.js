@@ -7,6 +7,10 @@ const base = require('../middleware/airtable');
 router.get('/portfolio', isAuthenticated, async (req, res) => {
 
     let walletAdded = null;
+    let netWorth = 0;
+    let solanaBalanceUsdc = 0;
+    let tokenBiggestPositionUsdc = 0;
+    let tokenBiggestPositionSymbol = '';
 
     try {
         const existingWallet = await base('solanaWallet').select({
@@ -14,17 +18,35 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
             maxRecords: 1,
         }).firstPage();
 
+        const userInfo = await base('userAuth').select({
+            filterByFormula: `{Email} = '${req.session.user.email}'`,
+            maxRecords: 1,
+        }).firstPage();
+
+        userName = userInfo[0].fields['First Name'];
+        if (userName == undefined) {
+            userName = userInfo[0].fields['Email']
+        };
+
         if (existingWallet.length === 0) {
             walletAdded = false;
             req.flash('warningMessage' ,'You need to connect your wallet first.')
         } else {
+
             
             walletAdded = true;
-            publicKey = existingWallet[0].fields['Solana Wallet']
+            publicKey = existingWallet[0].fields['Solana Wallet'];
 
-            const walletData = await fungiblesWalletBalance(publicKey);
-            console.log('Tokens data:', walletData.sortedTokensData);
-            console.log('Wallet Balance in USDC:', walletData.total_wallet_balance_usdc);
+            walletData = await fungiblesWalletBalance(publicKey);
+
+            // Total Wallet Balance in USDC
+            netWorth = walletData.totalWalletBalanceUsdc;
+            // Solana Balance in USDC
+            solanaBalanceUsdc = walletData.solanaBalanceUsdc;
+            // Token Biggest position in USDC
+            tokenBiggestPositionUsdc = walletData.tokenBiggestPositionUsdc;
+            // Token Biggest position symbol
+            tokenBiggestPositionSymbol = walletData.tokenBiggestPositionSymbol;
         
         };
 
@@ -33,7 +55,12 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
             warningMessage: req.flash('warningMessage'),
             isAuthenticated: !!req.session.user,
             title: 'Portfolio',
-            walletAdded: walletAdded,
+            walletAdded,
+            userName,
+            netWorth: parseFloat(netWorth).toFixed(2),
+            solanaBalanceUsdc: parseFloat(solanaBalanceUsdc).toFixed(2),
+            tokenBiggestPositionUsdc: parseFloat(tokenBiggestPositionUsdc).toFixed(2),
+            tokenBiggestPositionSymbol,
         });        
 
     } catch (err) {

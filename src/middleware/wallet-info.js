@@ -47,53 +47,65 @@ async function fungiblesWalletBalance(wallet) {
         const fungibleTokensData = {};
 
         // Current SOL price in USDC
-        const solana_price = parseFloat(walletData['nativeBalance']['price_per_sol']).toFixed(2);
+        const solanaPrice = walletData['nativeBalance']['price_per_sol'];
         // SOL balance in USDC 
-        const solana_balance_usdc = parseFloat(walletData['nativeBalance']['total_price']).toFixed(2);
+        const solanaBalanceUsdc = walletData['nativeBalance']['total_price'];
         // SOL balance
-        const solana_balance = parseFloat(solana_balance_usdc / solana_price).toFixed(2);
+        const solanaBalance = solanaBalanceUsdc / solanaPrice;
 
         fungibleTokensData['SOL'] = {
-            "token_price": solana_price,
-            "token_balance_usdc": solana_balance_usdc,
-            "token_balance": solana_balance,
+            "token_price": solanaPrice,
+            "token_balance_usdc": solanaBalanceUsdc,
+            "token_balance": solanaBalance,
         };
         
         // Current token price in USDC
-        let token_price = 0;
+        let tokenPrice = 0;
         // Token balance in USDC
-        let token_balance_usdc = 0;
+        let tokenBalanceUsdc = 0;
         // Token balance
-        let token_balance = 0;
+        let tokenBalance = 0;
+
+        // Token Biggest position
+        let tokenBiggestPositionUsdc = solanaBalanceUsdc;
+        let tokenBiggestPositionSymbol = 'SOL';
 
         // Total wallet balance
-        let total_wallet_balance_usdc = Number(solana_balance_usdc);
+        let totalWalletBalanceUsdc = solanaBalanceUsdc;
 
         for (const token of fungibleTokens) {
 
-            const token_info = token.token_info;
+            const tokenInfo = token.token_info;
             let tokenSymbol;
 
             try {
 
-                tokenSymbol = token_info['symbol'];
-                if (tokenSymbol && token_info['price_info']) { 
+                tokenSymbol = tokenInfo['symbol'];
+                if (tokenSymbol && tokenInfo['price_info']) { 
 
-                    token_price = parseFloat(token_info['price_info']['price_per_token']).toFixed(2);
-                    token_balance_usdc = parseFloat(token_info['price_info']['total_price']).toFixed(2);
-                    token_balance = parseFloat(token_balance_usdc/token_price).toFixed(2);
+                    tokenPrice = tokenInfo['price_info']['price_per_token'];
+                    tokenBalanceUsdc = tokenInfo['price_info']['total_price'];
+                    tokenBalance = tokenBalanceUsdc / tokenPrice;
 
-                    if (token_balance_usdc > 0.01 && token_balance != 'Infinity') {
+
+                    if (tokenBalanceUsdc > 0.01 && tokenBalance != Infinity) {
+
                         fungibleTokensData[tokenSymbol] = {
-                            "token_price": token_price,
-                            "token_balance_usdc": token_balance_usdc,
-                            "token_balance": token_balance,
+                            "token_price": tokenPrice,
+                            "token_balance_usdc": tokenBalanceUsdc,
+                            "token_balance": tokenBalance,
                         };
 
-                        total_wallet_balance_usdc += Number(token_balance_usdc);
+                        if (tokenBalanceUsdc > tokenBiggestPositionUsdc) {
+                            tokenBiggestPositionUsdc = tokenBalanceUsdc;
+                            tokenBiggestPositionSymbol = tokenSymbol;
+                        };
+                        
                     };
 
+                    totalWalletBalanceUsdc += tokenBalanceUsdc;
                 };
+                
 
             } catch (err) {
                 continue;
@@ -103,10 +115,17 @@ async function fungiblesWalletBalance(wallet) {
 
         // Sort tokens data according to token balance in USDC
         const tokensDataArray = Object.entries(fungibleTokensData);
-        tokensDataArray.sort((a, b) => b[1].token_balance_usdc - a[1].token_balance_usdc);
+        tokensDataArray.sort((a, b) => b[1].tokenBalanceUsdc - a[1].tokenBalanceUsdc);
         const sortedTokensData = Object.fromEntries(tokensDataArray);
         
-        return { sortedTokensData, total_wallet_balance_usdc };
+        return { 
+            sortedTokensData, 
+            totalWalletBalanceUsdc, 
+            solanaBalanceUsdc, 
+            solanaBalance, 
+            tokenBiggestPositionUsdc, 
+            tokenBiggestPositionSymbol,
+        };
 
     } catch (error) {
         console.error('Error fetching assets:', error);
