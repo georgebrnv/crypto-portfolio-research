@@ -31,6 +31,15 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
         if (existingWallet.length === 0) {
             walletAdded = false;
             req.flash('warningMessage' ,'You need to connect your wallet first.')
+
+            return res.render('portfolio', {
+                successMessage: req.flash('successMessage'),
+                warningMessage: req.flash('warningMessage'),
+                isAuthenticated: !!req.session.user,
+                title: 'Portfolio',
+                walletAdded,
+                userName,
+            }); 
         } else {
 
             
@@ -47,6 +56,8 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
             tokenBiggestPositionUsdc = walletData.tokenBiggestPositionUsdc;
             // Token Biggest position symbol
             tokenBiggestPositionSymbol = walletData.tokenBiggestPositionSymbol;
+            // Tokens data
+            tokensData = walletData.sortedTokensData;
         
         };
 
@@ -57,6 +68,7 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
             title: 'Portfolio',
             walletAdded,
             userName,
+            tokensData,
             netWorth: parseFloat(netWorth).toFixed(2),
             solanaBalanceUsdc: parseFloat(solanaBalanceUsdc).toFixed(2),
             tokenBiggestPositionUsdc: parseFloat(tokenBiggestPositionUsdc).toFixed(2),

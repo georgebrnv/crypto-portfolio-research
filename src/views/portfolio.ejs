@@ -113,31 +113,35 @@
                         <table id="datatablesSimple" class="datatable-table">
                             <thead>
                             <tr>
-                                <th data-sortable="true" style="width: 18.48574237954769%;"><a href="#"
-                                                                                               class="datatable-sorter">Start
-                                    Date</a></th>
-                                <th data-sortable="true" style="width: 16.027531956735498%;"><a href="#"
-                                                                                                class="datatable-sorter">Order
-                                    No.</a></th>
-                                <th data-sortable="true" style="width: 28.613569321533923%;"><a href="#"
-                                                                                                class="datatable-sorter">Name</a>
-                                </th>
-                                <th data-sortable="true" style="width: 14.454277286135694%;"><a href="#"
-                                                                                                class="datatable-sorter">Amount</a>
-                                </th>
-                                <th data-sortable="true" style="width: 22.418879056047196%;"><a href="#"
-                                                                                                class="datatable-sorter">Status</a>
-                                </th>
+                                <th data-sortable="true" style="width: 18.48574237954769%;">
+                                    <a href="#" class="datatable-sorter">Symbol</a></th>
+                                <th data-sortable="true" style="width: 16.027531956735498%;">
+                                    <a href="#" class="datatable-sorter">Amount</a></th>
+                                <th data-sortable="true" style="width: 28.613569321533923%;">
+                                    <a href="#" class="datatable-sorter">Balance (USDC)</a></th>
+                                <th data-sortable="true" style="width: 14.454277286135694%;">
+                                    <a href="#" class="datatable-sorter">Price per token</a></th>
+                                <th data-sortable="true" style="width: 22.418879056047196%;">
+                                    <a href="#" class="datatable-sorter">Price Alert</a></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr data-index="0">
-                                <td>2005/02/11</td>
-                                <td>9958</td>
-                                <td>Unity Pugh</td>
-                                <td>$12.00</td>
-                                <td><span class="badge bg-primary">Processing</span></td>
-                            </tr>
+                                <!-- <tr data-index="0">
+                                    <td>SOL</td>
+                                    <td>25</td>
+                                    <td>$3233.32</td>
+                                    <td>$141.14</td>
+                                    <td><span class="badge bg-primary">$135.31</span></td>
+                                </tr> -->
+                            <% for (let symbol in tokensData) { %>
+                                <tr data-index=<%= symbol %>>
+                                    <td><%= symbol %></td>
+                                    <td><%= tokensData[symbol].token_balance %></td>
+                                    <td><%= tokensData[symbol].token_balance_usdc %></td>
+                                    <td><%= tokensData[symbol].token_price %></td>
+                                    <td><span class="badge bg-primary">Skip for now</span></td>
+                                </tr>
+                            <% } %>
                             </tbody>
                         </table>
                     </div>

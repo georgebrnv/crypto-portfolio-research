@@ -54,9 +54,9 @@ async function fungiblesWalletBalance(wallet) {
         const solanaBalance = solanaBalanceUsdc / solanaPrice;
 
         fungibleTokensData['SOL'] = {
-            "token_price": solanaPrice,
-            "token_balance_usdc": solanaBalanceUsdc,
-            "token_balance": solanaBalance,
+            "token_price": parseFloat(solanaPrice).toFixed(2),
+            "token_balance_usdc": parseFloat(solanaBalanceUsdc).toFixed(2),
+            "token_balance": parseFloat(solanaBalance).toFixed(2),
         };
         
         // Current token price in USDC
@@ -91,9 +91,9 @@ async function fungiblesWalletBalance(wallet) {
                     if (tokenBalanceUsdc > 0.01 && tokenBalance != Infinity) {
 
                         fungibleTokensData[tokenSymbol] = {
-                            "token_price": tokenPrice,
-                            "token_balance_usdc": tokenBalanceUsdc,
-                            "token_balance": tokenBalance,
+                            "token_price": parseFloat(tokenPrice).toFixed(2),
+                            "token_balance_usdc": parseFloat(tokenBalanceUsdc).toFixed(2),
+                            "token_balance": parseFloat(tokenBalance).toFixed(2),
                         };
 
                         if (tokenBalanceUsdc > tokenBiggestPositionUsdc) {
@@ -115,7 +115,7 @@ async function fungiblesWalletBalance(wallet) {
 
         // Sort tokens data according to token balance in USDC
         const tokensDataArray = Object.entries(fungibleTokensData);
-        tokensDataArray.sort((a, b) => b[1].tokenBalanceUsdc - a[1].tokenBalanceUsdc);
+        tokensDataArray.sort((a, b) => parseFloat(b[1].token_balance_usdc) - parseFloat(a[1].token_balance_usdc));
         const sortedTokensData = Object.fromEntries(tokensDataArray);
         
         return { 

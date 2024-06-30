@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const base = require('../middleware/airtable');
+const { takeSnapshot } = require('../middleware/snapshot');
 
 
 router.post('/wallet/connect', async (req, res) => {
 
     const { publicKey } = req.body;
     console.log('Received wallet connection:', publicKey);
+
+    takeSnapshot(publicKey);
 
     try {
         const user = await base('userAuth').select({
@@ -24,22 +27,25 @@ router.post('/wallet/connect', async (req, res) => {
         }).firstPage();
 
         if (existingWallet.length > 0) {
-            const new_wallet = await base('solanaWallet').update([
-                {
-                    "id": existingWallet[0].id,
-                    "fields": {
-                        "Solana Wallet": publicKey,
-                    },  
-                }
-            ], function(err, records) {
-                if (err) {
-                    console.error(err);
-                    return;
-                }
-                records.forEach(function (record) {
-                    console.log(record.getId());
+            if (existingWallet[0].fields['Solana Wallet'] != publicKey) {
+                const new_wallet = await base('solanaWallet').update([
+                    {
+                        "id": existingWallet[0].id,
+                        "fields": {
+                            "Solana Wallet": publicKey,
+                        },  
+                    }
+                ], function(err, records) {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    records.forEach(function (record) {
+                        console.log('New wallet connected. Record ID:', record.getId());
+                    });
                 });
-            });
+            };
+            
         } else {
             const new_wallet = await base('solanaWallet').create([
                 {
@@ -56,9 +62,13 @@ router.post('/wallet/connect', async (req, res) => {
                     return;
                 }
                 records.forEach(function (record) {
-                    console.log(record.getId());
+                    console.log('Wallet has been added to your account. Record ID:', record.getId());
                 });
             });
+
+            // Take first snapshot after adding wallet
+            takeSnapshot(publicKey);
+
         };
 
         // Update user's session with wallet
