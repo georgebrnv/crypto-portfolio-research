@@ -9,8 +9,6 @@ router.post('/wallet/connect', async (req, res) => {
     const { publicKey } = req.body;
     console.log('Received wallet connection:', publicKey);
 
-    takeSnapshot(publicKey);
-
     try {
         const user = await base('userAuth').select({
             filterByFormula: `{Email} = '${req.session.user.email}'`,

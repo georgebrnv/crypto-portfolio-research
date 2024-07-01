@@ -52,8 +52,6 @@ async function scheduleSnapshots() {
             if (wallet != undefined) {
                 await takeSnapshot(wallet);
             }
-
-            console.log(`Snapshot for ${record} has been taken`);
         };
 
     } catch (err) {
@@ -61,7 +59,7 @@ async function scheduleSnapshots() {
     };
 };
 
-cron.schedule('*/2 * * * *', () => {
+cron.schedule('0,8,16 * * * *', () => {
     console.log('Starting taking snapshots..');
     scheduleSnapshots();
 });

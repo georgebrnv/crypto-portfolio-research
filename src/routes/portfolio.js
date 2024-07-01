@@ -3,6 +3,7 @@ const router = express.Router();
 const { isAuthenticated } = require('../middleware/authentication');
 const { fungiblesWalletBalance } = require('../middleware/wallet-info');
 const base = require('../middleware/airtable');
+const { balanceChart } = require('../middleware/chart');
 
 router.get('/portfolio', isAuthenticated, async (req, res) => {
 
@@ -11,6 +12,7 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
     let solanaBalanceUsdc = 0;
     let tokenBiggestPositionUsdc = 0;
     let tokenBiggestPositionSymbol = '';
+    let snapshotsData = {};
 
     try {
         const existingWallet = await base('solanaWallet').select({
@@ -23,7 +25,7 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
             maxRecords: 1,
         }).firstPage();
 
-        userName = userInfo[0].fields['First Name'];
+        userName = userInfo[0].fields['Username'];
         if (userName == undefined) {
             userName = userInfo[0].fields['Email']
         };
@@ -58,6 +60,9 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
             tokenBiggestPositionSymbol = walletData.tokenBiggestPositionSymbol;
             // Tokens data
             tokensData = walletData.sortedTokensData;
+
+            // Snapshots data
+            snapshotsData = await balanceChart(publicKey);
         
         };
 
@@ -73,6 +78,7 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
             solanaBalanceUsdc: parseFloat(solanaBalanceUsdc).toFixed(2),
             tokenBiggestPositionUsdc: parseFloat(tokenBiggestPositionUsdc).toFixed(2),
             tokenBiggestPositionSymbol,
+            snapshotsData,
         });        
 
     } catch (err) {

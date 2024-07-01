@@ -578,3 +578,11 @@ table.datatable-table:focus {
   background-color: #00c1ff !important; 
   color: #000 !important;
 }
+
+.positive {
+  color: #00df00 !important;
+}
+
+.negative {
+  color: red !important;
+}
