@@ -104,7 +104,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             const data = await response.json();
 
             if (!data.sessionActive && window.solana.isConnected) {
-                console.log('Session expired. Disconnecting wallet.');
                 await window.solana.disconnect();
                 localStorage.removeItem('walletConnected');
                 navbarConnectButton.style.display = 'inline-block';

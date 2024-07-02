@@ -104,7 +104,7 @@ function initializeLineChart(data) {
 
 function createGradient(canvas, colors) {
     const ctx = canvas.getContext('2d');
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height*2.6);
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height*4);
     gradient.addColorStop(0, colors[0]); // Start color
     gradient.addColorStop(1, colors[1]); // End color
     return gradient;

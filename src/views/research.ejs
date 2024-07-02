@@ -1,0 +1,104 @@
+<%- include('header') %>
+
+<section class="research-top-bg text-center pt-5">
+    <div class="container mt-5">
+        <h1 class="jumbotron-heading">Research Notes</h1>
+        <p class="lead text-muted">Here you can add or generate a note.</p>
+        <p>
+            <a id="addNoteBtn" class="btn btn-info my-2">Add a note</a>
+            <a id="generateNoteBtn" class="btn btn-dark my-2">Generate a note</a>
+        </p>
+    </div>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <% if (warningMessage && warningMessage.length > 0) { %>
+            <div class="alert alert-warning">
+                <%= warningMessage %>
+            </div>
+        <% } %>
+
+        <% if (successMessage && successMessage.length > 0) { %>
+            <div class="alert alert-success">
+                <%= successMessage %>
+            </div>
+        <% } %>
+
+        <div class="row">
+
+            <% userArticles.forEach(article => { %>
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-body">
+                            <p class="card-text"><%= article.fields.Note %></p>
+                            <% if (article.fields.URL) { %>
+                                <div class="mb-1">
+                                    <a href="<%= article.fields.URL %>" target="_blank">Link</a>
+                                </div>
+                            <% } %>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <form class="delete-form" method="POST" action="/research/note/delete">
+                                        <input type="hidden" name="recordId" value="<%= article.id %>">
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                    </form>
+                                </div>
+                                <small class="text-muted">TOKEN: <%= article.fields.Token %></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+
+        </div>
+    </div>
+</div>
+
+<!-- Add Note Modal -->
+<div id="addNoteModal" class="modal">
+    <div class="modal-content">
+        <span><button class="close" id="closeAddNoteModal">&times;</button></span>
+        <h2>Add a Note</h2>
+        <form id="addNoteForm" method="POST" action="/research/note/add">
+            <div class="form-group">
+                <label for="cryptoSelect">Select Cryptocurrency</label>
+                <select name="tokenSymbolAdd" class="form-control" id="cryptoSelect" required>
+                    <% for (let symbol in tokensData) { %>
+                        <option value="<%= symbol %>"><%= symbol %></option>
+                    <% } %>
+                </select>
+                <label for="noteText">Note</label>
+                <textarea name="note" class="form-control" id="noteText" maxlength="300" required></textarea>
+            </div>
+            <div class="mt-2">
+                <button type="submit" class="btn btn-primary">Save Note</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Generate Note Modal -->
+<div id="generateNoteModal" class="modal ">
+    <div class="modal-content">
+        <span><button class="close" id="closeGenerateNoteModal">&times;</button></span>
+        <h2>Generate a Note</h2>
+        <form id="generateNoteForm" method="POST" action="/research/note/generate">
+            <div class="form-group">
+                <label for="cryptoSelect">Select Cryptocurrency</label>
+                <select name="tokenSymbolGenerate" class="form-control" id="cryptoSelect" required>
+                    <% for (let symbol in tokensData) { %>
+                        <option value="<%= symbol %>"><%= symbol %></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="mt-1">
+                <button type="submit" class="btn btn-primary">Generate a Note</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<%- include('footer') %>

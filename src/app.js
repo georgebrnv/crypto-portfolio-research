@@ -62,7 +62,8 @@ const authRoutes = require('./routes/auth');
 const profileRoutes = require('./routes/profile');
 const portfolioRoutes = require('./routes/portfolio');
 const indexRoutes = require('./routes/index');
-const walletRoutes = require('./routes/wallet.js');
+const walletRoutes = require('./routes/wallet');
+const researchRoutes = require('./routes/research');
 
 // Use routes
 app.use('/', authRoutes);
@@ -70,6 +71,7 @@ app.use('/', profileRoutes);
 app.use('/', portfolioRoutes);
 app.use('/', indexRoutes);
 app.use('/', walletRoutes);
+app.use('/', researchRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

@@ -5,13 +5,6 @@
         <div class="row align-items-center justify-content-between">
             <div class="col-12 col-md mb-4 mb-md-0">
                 <h1 class="mb-1 display-4 fw-500 text-white">Welcome, <%= userName %>!</h1>
-                <p class="lead mb-0 text-white">Your dashboard is ready to go!</p>
-            </div>
-            <div class="col-12 col-md-auto flex-shrink-0">
-                <label class="form-label text-white-50" for="litepickerDateRange">Date range:</label>
-                <input class="form-control mb-0" id="litepickerDateRange" placeholder="Select date range..."
-                       value="Mar 8, 2023 - Mar 14, 2023" style="min-width: 13rem; height: 3rem">
-                <div class="litepicker-backdrop"></div>
             </div>
         </div>
     </div>
@@ -94,7 +87,7 @@
                                     style="display: flex; width: auto; height: 320px;"></canvas>
                         </div>
                         <div class="row">
-                            <div class="col-md-12 d-flex justify-content-center">
+                            <div class="col-md-12 d-flex justify-content-center mt-3">
                                 <button class="chart-btn btn btn-sm btn-outline-secondary mx-1" id="dayBtn">Day</button>
                                 <button class="chart-btn btn btn-sm btn-outline-secondary mx-1" id="weekBtn">Week</button>
                                 <button class="chart-btn btn btn-sm btn-outline-secondary mx-1" id="monthBtn">Month</button>
@@ -118,37 +111,15 @@
             </div>
             <div class="card-body p-4">
                 <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
-                    <div class="datatable-top">
-                        <div class="datatable-dropdown">
-                            <label>
-                                <select class="datatable-selector">
-                                    <option value="5">5</option>
-                                    <option value="10" selected="">10</option>
-                                    <option value="15">15</option>
-                                    <option value="20">20</option>
-                                    <option value="25">25</option>
-                                </select> entries per page
-                            </label>
-                        </div>
-                        <div class="datatable-search">
-                            <input class="datatable-input" placeholder="Search..." type="search" title="Search within table"
-                                   aria-controls="datatablesSimple">
-                        </div>
-                    </div>
                     <div class="datatable-container">
                         <table id="datatablesSimple" class="datatable-table">
                             <thead>
                             <tr>
-                                <th data-sortable="true" style="width: 18.48574237954769%;">
-                                    <a href="#" class="datatable-sorter">Symbol</a></th>
-                                <th data-sortable="true" style="width: 16.027531956735498%;">
-                                    <a href="#" class="datatable-sorter">Amount</a></th>
-                                <th data-sortable="true" style="width: 28.613569321533923%;">
-                                    <a href="#" class="datatable-sorter">Balance (USDC)</a></th>
-                                <th data-sortable="true" style="width: 14.454277286135694%;">
-                                    <a href="#" class="datatable-sorter">Price per token</a></th>
-                                <th data-sortable="true" style="width: 22.418879056047196%;">
-                                    <a href="#" class="datatable-sorter">Price Alert</a></th>
+                                <th data-sortable="true" style="width: 18.48574237954769%;">Symbol</th>
+                                <th data-sortable="true" style="width: 16.027531956735498%;">Amount</th>
+                                <th data-sortable="true" style="width: 28.613569321533923%;">Balance (USDC)</th>
+                                <th data-sortable="true" style="width: 14.454277286135694%;">Price per token</th>
+                                <th data-sortable="true" style="width: 22.418879056047196%;">Price Alert</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -165,17 +136,6 @@
                         </table>
                     </div>
                     <div class="datatable-bottom">
-                        <div class="datatable-info">Showing 1 to 10 of 100 entries</div>
-                        <nav class="datatable-pagination">
-                            <ul class="datatable-pagination-list">
-                                <li class="datatable-pagination-list-item datatable-hidden datatable-disabled"><a
-                                        data-page="1" class="datatable-pagination-list-item-link">‹</a></li>
-                                <li class="datatable-pagination-list-item datatable-active"><a data-page="1"
-                                                                                               class="datatable-pagination-list-item-link">1</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
                 </div>
             </div>
         </div>

@@ -9,8 +9,6 @@ async function takeSnapshot(wallet) {
         maxRecords: 1,
     }).firstPage();
 
-    console.log('Snapshot - user wallet id:', userWallet[0].id);
-
     // Parse wallet data
     const userWalletBalanceData = fungiblesWalletBalance(wallet);
     const totalBalance = (await userWalletBalanceData).totalWalletBalanceUsdc;
@@ -26,14 +24,11 @@ async function takeSnapshot(wallet) {
                 "SOL Balance": solBalance,
             }
         }
-    ], function(err, records) {
+    ], function(err, _records) {
         if (err) {
           console.error('Error creating snapshot:', err);
           return;
-        }
-        records.forEach(function (record) {
-          console.log('New snapshot was created:', record.getId());
-        });
+        };
     });
 
     return newSnapshot;
@@ -59,7 +54,7 @@ async function scheduleSnapshots() {
     };
 };
 
-cron.schedule('0,8,16 * * * *', () => {
+cron.schedule('* */8 * * *', () => {
     console.log('Starting taking snapshots..');
     scheduleSnapshots();
 });

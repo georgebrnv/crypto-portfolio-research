@@ -7,7 +7,6 @@ const { takeSnapshot } = require('../middleware/snapshot');
 router.post('/wallet/connect', async (req, res) => {
 
     const { publicKey } = req.body;
-    console.log('Received wallet connection:', publicKey);
 
     try {
         const user = await base('userAuth').select({
@@ -33,14 +32,11 @@ router.post('/wallet/connect', async (req, res) => {
                             "Solana Wallet": publicKey,
                         },  
                     }
-                ], function(err, records) {
+                ], function(err, _records) {
                     if (err) {
                         console.error(err);
                         return;
-                    }
-                    records.forEach(function (record) {
-                        console.log('New wallet connected. Record ID:', record.getId());
-                    });
+                    };
                 });
             };
             
@@ -54,14 +50,11 @@ router.post('/wallet/connect', async (req, res) => {
                         ]
                     },  
                 }
-            ], function(err, records) {
+            ], function(err, _records) {
                 if (err) {
                     console.error(err);
                     return;
-                }
-                records.forEach(function (record) {
-                    console.log('Wallet has been added to your account. Record ID:', record.getId());
-                });
+                };
             });
 
             // Take first snapshot after adding wallet

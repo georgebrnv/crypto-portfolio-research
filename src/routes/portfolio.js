@@ -83,7 +83,7 @@ router.get('/portfolio', isAuthenticated, async (req, res) => {
 
     } catch (err) {
 
-        console.log('Error occured while loading Portfolio page:', err);
+        console.error('Error occured while loading Portfolio page:', err);
         return res.redirect('index');
 
     };
